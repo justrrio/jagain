@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'; // Widget Library;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jagain/pages/whatsapp.dart';
+import 'package:jagain/pages/camera.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -35,18 +36,24 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            width: MediaQuery.of(context).size.width -
-                40, // Lebar layar dikurangi 40 pixels
-            height: 200, // Tinggi tetap
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.black,
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              "test",
-              style: TextStyle(color: Colors.white),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CameraPage()));
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width -
+                  40, // Lebar layar dikurangi 40 pixels
+              height: 200, // Tinggi tetap
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.black,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                "test",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ],
