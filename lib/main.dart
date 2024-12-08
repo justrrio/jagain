@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart'; // Firebase library
 import 'package:jagain/pages/home.dart'; // Widget Library
 
-void main() {
+void main() async {
   // App entry point
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
   runApp(
       // Take the scene into runApp function by passing a widget as a parameter
       const MyApp());
