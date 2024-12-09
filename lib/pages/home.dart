@@ -91,7 +91,7 @@ AppBar appBar(BuildContext context) {
       GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const WhatsappPage()));
+                MaterialPageRoute(builder: (context) => WhatsappPage()));
           },
           child: Container(
               margin: EdgeInsets.all(5),
