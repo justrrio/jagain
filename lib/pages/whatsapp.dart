@@ -111,7 +111,7 @@ class _WhatsappPageState extends State<WhatsappPage> {
                         CircularProgressIndicator(color: Colors.white),
                         const SizedBox(width: 24),
                         Text(
-                          "Please Wait...",
+                          "Mohon tunggu...",
                           style: TextStyle(
                               fontFamily: 'Poppins-Semibold',
                               fontWeight: FontWeight.w600,

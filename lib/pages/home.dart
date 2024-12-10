@@ -39,7 +39,7 @@ class HomePage extends StatelessWidget {
           GestureDetector(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CameraPage()));
+                  MaterialPageRoute(builder: (context) => CameraPage()));
             },
             child: Container(
               width: MediaQuery.of(context).size.width -
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
 AppBar appBar(BuildContext context) {
   return AppBar(
     title: Text(
-      "Jagain App",
+      "Jagain",
       style: TextStyle(
         fontFamily: "Poppins-Bold",
         fontSize: 22,
