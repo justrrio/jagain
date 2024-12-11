@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jagain/pages/home.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class WhatsappPage extends StatefulWidget {
   const WhatsappPage({super.key});
@@ -10,6 +11,10 @@ class WhatsappPage extends StatefulWidget {
 
 class _WhatsappPageState extends State<WhatsappPage> {
   bool isLoading = false;
+  final dbRef = FirebaseDatabase.instance.ref().child('phone');
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final url = "https://api.whatsapp.com/send?phone=62";
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +87,7 @@ class _WhatsappPageState extends State<WhatsappPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               TextField(
+                controller: nameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: "Nama",
@@ -89,6 +95,7 @@ class _WhatsappPageState extends State<WhatsappPage> {
               ),
               SizedBox(height: 15),
               TextField(
+                controller: phoneController,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(), hintText: "Nomor Telepon"),
               ),
@@ -128,12 +135,43 @@ class _WhatsappPageState extends State<WhatsappPage> {
                           fontSize: 20,
                           color: Colors.white),
                     ),
-              onPressed: () {
-                if (isLoading) {
-                  setState(() => isLoading = false);
-                  return;
-                }
+              onPressed: () async {
+                // Jika sudah loading, jangan proses ulang
+                if (isLoading) return;
+
+                // Atur isLoading ke true untuk menampilkan animasi
                 setState(() => isLoading = true);
+
+                try {
+                  // Simpan data ke Firebase
+                  await dbRef.child(DateTime.now().microsecond.toString()).set({
+                    "nama": nameController.text.trim(),
+                    "nomor": phoneController.text.trim(),
+                  });
+
+                  // Beri umpan balik jika berhasil (opsional)
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Data berhasil disimpan!'),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                } catch (e) {
+                  // Tampilkan pesan kesalahan jika gagal
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Gagal menyimpan data: $e'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                } finally {
+                  // Kembalikan isLoading ke false untuk mengganti tombol kembali ke "Submit"
+                  setState(() => isLoading = false);
+
+                  // Kosongkan text field (opsional)
+                  nameController.clear();
+                  phoneController.clear();
+                }
               },
             ))
       ]),

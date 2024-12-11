@@ -2,12 +2,15 @@ import 'package:flutter/material.dart'; // Widget Library;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jagain/pages/whatsapp.dart';
 import 'package:jagain/pages/camera.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final Uri whatsapp = Uri.parse("https://wa.me/62895374890567");
+
     return Scaffold(
       appBar: appBar(context),
       body: Column(
@@ -56,6 +59,28 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          ElevatedButton(
+              onPressed: () async {
+                try {
+                  if (await canLaunchUrl(whatsapp)) {
+                    await launchUrl(whatsapp);
+                    print("Successfully launched URL");
+                  } else {
+                    print("Cannot launch URL");
+                  }
+                } catch (e) {
+                  print("Error: $e");
+                }
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 50,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color(0xff349A6D)),
+                child: Text("Test"),
+              ))
         ],
       ),
     );
