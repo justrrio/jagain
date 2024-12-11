@@ -1,16 +1,40 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart'; // Widget Library;
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jagain/pages/whatsapp.dart';
 import 'package:jagain/pages/camera.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final Uri whatsapp = Uri.parse("https://wa.me/62895374890567");
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    AwesomeNotifications awesomeNotifications = AwesomeNotifications();
+    awesomeNotifications.isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        awesomeNotifications.requestPermissionToSendNotifications();
+      }
+    });
+
+    super.initState();
+  }
+
+  triggerNotification() {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 10,
+            channelKey: 'jagain',
+            title: 'Warning',
+            body: 'Terdengar suara keras!'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
       body: Column(
@@ -45,20 +69,28 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => CameraPage()));
             },
             child: Container(
-              width: MediaQuery.of(context).size.width -
-                  40, // Lebar layar dikurangi 40 pixels
-              height: 200, // Tinggi tetap
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.black,
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                "test",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+                width: MediaQuery.of(context).size.width -
+                    40, // Lebar layar dikurangi 40 pixels
+                height: 200, // Tinggi tetap
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                alignment: Alignment.center,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child:
+                        Image.asset("assets/images/Thumbnail Camera 1.png"))),
           ),
+          ElevatedButton(
+              onPressed: () {
+                triggerNotification();
+              },
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 100,
+                color: Colors.black,
+                child: Text("test"),
+              ))
         ],
       ),
     );
