@@ -59,28 +59,6 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          ElevatedButton(
-              onPressed: () async {
-                try {
-                  if (await canLaunchUrl(whatsapp)) {
-                    await launchUrl(whatsapp);
-                    print("Successfully launched URL");
-                  } else {
-                    print("Cannot launch URL");
-                  }
-                } catch (e) {
-                  print("Error: $e");
-                }
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 50,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Color(0xff349A6D)),
-                child: Text("Test"),
-              ))
         ],
       ),
     );

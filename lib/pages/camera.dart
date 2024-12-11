@@ -29,26 +29,41 @@ class _CameraPageState extends State<CameraPage> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        SizedBox(
-          height: 400,
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => CallPage()));
-          },
-          style: ElevatedButton.styleFrom(
-              textStyle: TextStyle(fontSize: 22),
-              minimumSize: Size.fromHeight(52),
-              shape: StadiumBorder(),
-              backgroundColor: Color(0xff349A6D)),
-          child: Text(
-            "Call",
-            style: TextStyle(
-                fontFamily: 'Poppins-Semibold',
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
-                color: Colors.white),
+        Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.only(left: 25, top: 430, right: 25, bottom: 0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Color(0xff349A6D),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.call,
+                size: 40,
+                color: Colors.white,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CallPage()));
+                },
+                style: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(fontSize: 22),
+                    shape: StadiumBorder(),
+                    backgroundColor: Color(0xff349A6D),
+                    shadowColor: Colors.transparent),
+                child: Text(
+                  "Call",
+                  style: TextStyle(
+                      fontFamily: 'Poppins-Semibold',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
+                      color: Colors.white),
+                ),
+              ),
+            ],
           ),
         ),
       ],
