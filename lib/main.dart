@@ -4,9 +4,11 @@ import 'package:jagain/pages/home.dart';
 import 'package:jagain/pages/camera.dart'; // Import your camera page
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Initialize Awesome Notifications with on tap functionality
   AwesomeNotifications().initialize(
@@ -26,6 +28,7 @@ void main() async {
   );
 
   await Firebase.initializeApp();
+  FlutterNativeSplash.remove();
 
   runApp(const MyApp());
 }
@@ -54,12 +57,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dbRef = FirebaseDatabase.instance.ref().child('esp32');
+    final dbRef = FirebaseDatabase.instance.ref().child('esp32cam');
 
     dbRef.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value as Map?;
 
-      if (data?['data'] is Map && (data?['data']['status'] == true)) {
+      if (data is Map && (data['soundDetected'] == true)) {
         triggerNotification();
       }
     });

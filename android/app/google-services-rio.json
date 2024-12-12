@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "237486690153",
-    "firebase_url": "https://esp32cam-9b78b-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "esp32cam-9b78b",
-    "storage_bucket": "esp32cam-9b78b.firebasestorage.app"
+    "project_number": "827744214198",
+    "firebase_url": "https://jagain-92adf-default-rtdb.firebaseio.com",
+    "project_id": "jagain-92adf",
+    "storage_bucket": "jagain-92adf.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:237486690153:android:496224e28d2ae02c8a37f8",
+        "mobilesdk_app_id": "1:827744214198:android:67885ee4baf4ca0a51da17",
         "android_client_info": {
           "package_name": "com.example.jagain"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBmdeJtaY7hT7Pa-ty3AOBtLBZBwHm4gtA"
+          "current_key": "AIzaSyDJAGXJRDiX5MJmXzAjNAhZsvyGUBtIuNQ"
         }
       ],
       "services": {

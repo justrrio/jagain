@@ -67,6 +67,9 @@ class _HomePageState extends State<HomePage> {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CameraPage()));
+              print("");
+              print("KE CAMERA PAGE");
+              print("");
             },
             child: Container(
                 width: MediaQuery.of(context).size.width -
@@ -81,16 +84,6 @@ class _HomePageState extends State<HomePage> {
                     child:
                         Image.asset("assets/images/Thumbnail Camera 1.png"))),
           ),
-          ElevatedButton(
-              onPressed: () {
-                triggerNotification();
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 100,
-                color: Colors.black,
-                child: Text("test"),
-              ))
         ],
       ),
     );
