@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dbRef = FirebaseDatabase.instance.ref().child('esp32cam');
+    final dbRef = FirebaseDatabase.instance.ref().child('esp32camdata');
 
     dbRef.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value as Map?;
