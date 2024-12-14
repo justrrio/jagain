@@ -21,7 +21,6 @@ void main() async {
         ),
       ],
       debug: true);
-
   // Set up listener for when a notification is tapped
   AwesomeNotifications().setListeners(
     onActionReceivedMethod: handleNotificationTap,

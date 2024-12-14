@@ -104,7 +104,7 @@ class _WhatsappPageState extends State<WhatsappPage> {
         ),
         Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.only(left: 25, top: 230, right: 25, bottom: 0),
+            margin: EdgeInsets.only(left: 25, top: 50, right: 25, bottom: 0),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   textStyle: TextStyle(fontSize: 22),
